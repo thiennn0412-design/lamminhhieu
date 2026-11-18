@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dành Cho...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div id="progressBar" class="progress-bar"></div>
+
+    <!-- Screens -->
+    <section class="screen" id="screen-entrance" data-index="0">
+        <div class="entrance-wrapper">
+            <div class="brand">Chào Lâm Phu Quân</div>
+            <h1 class="main-title">Bạn có một lá thư từ Nguyetphunhan</h1>
+            <p class="subtitle">Dành cho ông dà cụa toiii...</p>
+            <div class="divider"></div>
+            <div class="password-wrapper">
+                <input type="password" id="passwordInput" placeholder="Nhập mật khẩu" />
+                <button id="togglePwd" aria-label="Hiện mật khẩu">👁️</button>
+            </div>
+            <button id="unlockBtn" class="btn-primary">Hô biến</button>
+            <p class="hint" id="hintText"></p>
+            <p id="errorMsg" class="error-msg" aria-live="polite"></p>
+        </div>
+    </section>
+
+    <section class="screen hidden" id="screen-cover" data-index="1">
+        <div class="cover-layout">
+            <!-- Left: Editorial content -->
+            <div class="cover-left">
+                <div class="cover-left-inner">
+                    <div class="cover-meta">
+                        <span class="cover-chapter">01</span>
+                        <span class="cover-divider-h"></span>
+                        <span class="cover-brand">From Bé Mây, Tờ Dăn, Adenosine Triphosphate</span>
+                    </div>
+                    <h2 class="cover-recipient" id="coverName"></h2>
+                    <div class="cover-date-row">
+                        <span class="cover-divider-line"></span>
+                        <p class="cover-date" id="coverDate"></p>
+                    </div>
+                    <h1 class="cover-headline" id="coverTitle"></h1>
+                    <p class="cover-intro">Tặng cho người ông chú tui thưn nhất quả đất. Một chút lòng thành từ Tvann mong chú Híu nhận. Chú có đồng ý honggg...</p>
+                    <button id="enterStoryBtn" class="cover-btn">Đồng ý vì Tvan dễ thương<span class="cover-btn-arrow">→</span></button>
+                </div>
+            </div>
+            <!-- Right: Portrait image -->
+            <div class="cover-right">
+                <div class="cover-portrait-wrapper">
+                    <img class="cover-portrait" id="coverPortrait" src="assets/images/cover.jpg" alt="Portrait" width="480" height="600" loading="eager" decoding="async" />
+                    <span class="cover-img-caption">Hieuchiwareeeeee</span>
+                    <span class="cover-img-overlay-text">MA CHÉRIE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="screen hidden" id="screen-archive" data-index="2">
+        <div class="archive-wrapper">
+            <h3 class="section-heading">FRAGMENTS OF TIME</h3>
+            <p class="section-subtitle">Ảnh cụa tụi mìnhhh.</p>
+            <div class="gallery-grid" id="galleryGrid"></div>
+            <div class="archive-nav">
+                <button id="backFromArchive" class="btn-secondary">Quay lại</button>
+                <button id="toLetterBtn" class="btn-primary">Đọc lá thư</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="screen hidden" id="screen-letter" data-index="3">
+        <div class="letter-wrapper">
+            <h3 class="letter-title">MỘT ĐỐNG CHỮ DÀNH CHO CHÚ</h3>
+            <div class="letter-content" id="letterContent"></div>
+            <div class="letter-controls">
+                <button id="replayLetterBtn" class="btn-secondary">Đọc lại</button>
+                <button id="toFinaleBtn" class="btn-primary">Tiếp tục</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="screen hidden" id="screen-finale" data-index="4">
+        <div class="finale-wrapper">
+            <div class="gift-box" id="giftBox">
+                <div class="gift-ribbon"></div>
+                <div class="gift-body"></div>
+            </div>
+            <div class="final-message hidden" id="finalMessage">
+                <p id="finalText"></p>
+                <p class="signature" id="signature"></p>
+                <button id="restartBtn" class="btn-primary">Quay lại đầu</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox (shared) -->
+    <div id="lightbox" class="lightbox hidden" aria-hidden="true">
+        <div class="lightbox-overlay"></div>
+        <div class="lightbox-card">
+            <div class="lightbox-header">
+                <span class="lightbox-counter" id="lightboxCounter"></span>
+                <button id="lightboxClose" class="lightbox-close" aria-label="Đóng">✕</button>
+            </div>
+            <div class="lightbox-image-wrapper">
+                <img id="lightboxImg" src="" alt="" />
+                <button id="prevImg" class="lightbox-nav lightbox-prev" aria-label="Trước">&#9664;</button>
+                <button id="nextImg" class="lightbox-nav lightbox-next" aria-label="Sau">&#9654;</button>
+            </div>
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- Audio Player -->
+    <div class="audio-player" id="audioPlayer">
+        <button id="playPauseBtn" class="audio-btn" aria-label="Phát nhạc">►</button>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.05" aria-label="Âm lượng" />
+        <span id="audioStatus" class="audio-status">Tắt</span>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
